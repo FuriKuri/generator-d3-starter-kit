@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
+
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
@@ -16,7 +17,18 @@ module.exports = yeoman.generators.Base.extend({
       'Welcome to the ' + chalk.red('D3StarterKit') + ' generator!'
     ));
 
-    done();
+    var prompts = [{
+      type: 'confirm',
+      name: 'karma',
+      message: 'Create karma config and an example spec?',
+      default: true
+    }];
+
+    this.prompt(prompts, function (props) {
+      this.karma = props.karma;
+      done();
+    }.bind(this));
+
   },
 
   writing: {
@@ -49,6 +61,21 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('server.js'),
         this.destinationPath('server.js')
       );
+      if (this.karma) {
+        this.mkdir('js/karma');
+        this.fs.copy(
+          this.templatePath('hello.js'),
+          this.destinationPath('js/karma/hello.js')
+        );
+        this.fs.copy(
+          this.templatePath('hello.spec.js'),
+          this.destinationPath('spec/hello.spec.js')
+        );
+        this.fs.copy(
+          this.templatePath('_karma.conf.js'),
+          this.destinationPath('karma.conf.js')
+        );
+      }
     },
 
     projectfiles: function () {
