@@ -1,0 +1,6 @@
+language: node_js
+node_js:
+  - '0.10'
+before_install:
+  - currentfolder=${PWD##*/}
+  - if [ "$currentfolder" != 'generator-d3-starter-kit' ]; then cd .. && eval "mv $currentfolder generator-d3-starter-kit" && cd generator-d3-starter-kit; fi
