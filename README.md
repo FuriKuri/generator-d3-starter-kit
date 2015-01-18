@@ -35,6 +35,10 @@ Finally, initiate the generator:
 yo d3-starter-kit
 ```
 
+Add new page template
+```bash
+yo d3-iris:new <name>
+```
 ### Getting To Know Yeoman
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
