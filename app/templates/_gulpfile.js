@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
   path = require('path'),
   uglify = require('gulp-uglify'),
+  jshint = require('gulp-jshint'),
   EXPRESS_ROOT = path.join(__dirname, 'app');
 
 var startExpress = function() {
@@ -26,20 +27,22 @@ var notifyLivereload = function(event, lr) {
   });
 }
 
+var compress = function() {
+  gulp.src('js/*/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist'))
+};
+
 gulp.task('lint', function() {
     return gulp.src(['js/*/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
 
-gulp.task('compress', function() {
-  gulp.src('js/*/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('dist'))
-});
+gulp.task('compress', compress);
 
 gulp.task('default', function () {
-
+  compress();
   startExpress();
   var lr = startLiveReload();
 
@@ -48,6 +51,7 @@ gulp.task('default', function () {
   });
 
   gulp.watch('js/**', function(event){
+    compress();
     notifyLivereload(event, lr);
   });
 });

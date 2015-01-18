@@ -1,6 +1,6 @@
 {
   "name": "generator-d3-starter-kit",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",

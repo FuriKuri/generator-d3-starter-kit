@@ -23,7 +23,6 @@ var excluded_folders = function(val) {
 module.exports = function(conf){
 
   app.use(require('connect-livereload')());
-//  app.use(express.static(conf.dir));
   app.set("views", conf.dir)
   app.engine('jade', require('jade').__express);
 
@@ -37,7 +36,7 @@ module.exports = function(conf){
   });
 
   app.use(express.static('app'));
-  app.use('/js', express.static('js'));
+  app.use('/js', express.static('dist'));
 
   app.listen(conf.port);
   console.log("Server started in http://localhost:" + conf.port);
