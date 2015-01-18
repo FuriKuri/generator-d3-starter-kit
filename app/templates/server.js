@@ -23,7 +23,7 @@ module.exports = function(conf){
   },conf);
 
   app.use(require('connect-livereload')());
-  app.use(express.static(conf.dir));
+//  app.use(express.static(conf.dir));
   app.set("views", conf.dir)
   app.engine('jade', require('jade').__express);
 
@@ -32,9 +32,12 @@ module.exports = function(conf){
       if(err)
         res.send(500);
       var filtered_dirs = paths.dirs.filter(excluded_folders).map(relative_dirs);
-      res.render("index.jade", {dirs:filtered_dirs});
+      res.render("../templates/index.jade", {dirs:filtered_dirs});
     })
   });
+
+  app.use(express.static('app'));
+  app.use(express.static('js'));
 
   app.listen(conf.port);
   console.log("Server started in http://localhost:" + conf.port);

@@ -13,7 +13,7 @@ module.exports = yeoman.generators.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the divine' + chalk.red('D3StarterKit') + ' generator!'
+      'Welcome to the ' + chalk.red('D3StarterKit') + ' generator!'
     ));
 
     var prompts = [{
@@ -48,10 +48,13 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('bowerrc'),
         this.destinationPath('.bowerrc')
       );
+      this.mkdir('templates');
       this.mkdir('app');
+      this.mkdir('js');
+
       this.fs.copy(
         this.templatePath('index.jade'),
-        this.destinationPath('app/index.jade')
+        this.destinationPath('templates/index.jade')
       );
       this.fs.copy(
         this.templatePath('server.js'),
