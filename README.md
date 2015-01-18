@@ -37,7 +37,7 @@ yo d3-starter-kit
 
 Add new page template
 ```bash
-yo d3-iris:new <name>
+yo d3-starter-kit:new <name>
 ```
 ### Getting To Know Yeoman
 
