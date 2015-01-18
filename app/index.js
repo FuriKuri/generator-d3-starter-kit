@@ -16,18 +16,7 @@ module.exports = yeoman.generators.Base.extend({
       'Welcome to the ' + chalk.red('D3StarterKit') + ' generator!'
     ));
 
-    var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
-    }];
-
-    this.prompt(prompts, function (props) {
-      this.someOption = props.someOption;
-
-      done();
-    }.bind(this));
+    done();
   },
 
   writing: {
