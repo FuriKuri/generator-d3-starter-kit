@@ -20,12 +20,18 @@ module.exports = yeoman.generators.Base.extend({
     var prompts = [{
       type: 'confirm',
       name: 'karma',
-      message: 'Create karma config and an example spec?',
+      message: 'Create karma example?',
+      default: true
+    }, {
+      type: 'confirm',
+      name: 'example',
+      message: 'Create D3 example?',
       default: true
     }];
 
     this.prompt(prompts, function (props) {
       this.karma = props.karma;
+      this.example = props.example;
       done();
     }.bind(this));
 
@@ -74,6 +80,22 @@ module.exports = yeoman.generators.Base.extend({
         this.fs.copy(
           this.templatePath('_karma.conf.js'),
           this.destinationPath('karma.conf.js')
+        );
+      }
+      if (this.example) {
+        this.mkdir('js/example');
+        this.mkdir('app/example');
+        this.fs.copy(
+          this.templatePath('example.js'),
+          this.destinationPath('js/example/index.js')
+        );
+        this.fs.copy(
+          this.templatePath('example.html'),
+          this.destinationPath('app/example/index.html')
+        );
+        this.fs.copy(
+          this.templatePath('data.csv'),
+          this.destinationPath('app/example/data.csv')
         );
       }
     },
