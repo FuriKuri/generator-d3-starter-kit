@@ -36,4 +36,7 @@ gulp.task('default', function () {
     notifyLivereload(event, lr);
   });
 
+  gulp.watch('js/**', function(event){
+    notifyLivereload(event, lr);
+  });
 });

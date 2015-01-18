@@ -7,6 +7,11 @@ var express = require('express'),
   _ = require('lodash'),
   dir  = require('node-dir');
 
+var conf = _.extend({
+    dir : path.join(__dirname, 'app'),
+    port : 8080
+  },conf);
+
 var relative_dirs = function(curr) {
   return path.relative(conf.dir, curr);
 }
@@ -16,11 +21,6 @@ var excluded_folders = function(val) {
 }
 
 module.exports = function(conf){
-
-  var conf = _.extend({
-    dir : path.join(__dirname, 'app'),
-    port : 8080
-  },conf);
 
   app.use(require('connect-livereload')());
 //  app.use(express.static(conf.dir));
@@ -37,7 +37,7 @@ module.exports = function(conf){
   });
 
   app.use(express.static('app'));
-  app.use(express.static('js'));
+  app.use('/js', express.static('js'));
 
   app.listen(conf.port);
   console.log("Server started in http://localhost:" + conf.port);
