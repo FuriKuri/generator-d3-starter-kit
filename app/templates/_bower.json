@@ -1,6 +1,8 @@
 {
   "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+  "version": "0.0.1",
+  "dependencies": {
+  	"d3": "~3.5.3"
+  }
 }
 

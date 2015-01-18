@@ -1,0 +1,23 @@
+doctype
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    title D3 - Basic
+  body
+    .container
+      h1 D3 basic template
+      section
+        h2 Resources
+        ul
+          li
+            a(href='http://yeoman.io/') Yeoman
+          li
+            a(href='http://d3js.org/') D3
+          li
+            a(href='https://github.com/mbostock/d3/wiki/API-Reference') D3 - documentation
+      section.folders
+        ul
+          for dir in dirs
+            li
+              a(href="/"+dir)= dir
