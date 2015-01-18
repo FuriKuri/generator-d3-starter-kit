@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
   path = require('path'),
+  uglify = require('gulp-uglify'),
   EXPRESS_ROOT = path.join(__dirname, 'app');
 
 var startExpress = function() {
@@ -25,8 +26,12 @@ var notifyLivereload = function(event, lr) {
   });
 }
 
-// `gulp.task()` defines task that can be run calling `gulp xyz` from the command line
-// The `default` task gets called when no task name is provided to Gulp
+gulp.task('compress', function() {
+  gulp.src('js/*/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist'))
+});
+
 gulp.task('default', function () {
 
   startExpress();
