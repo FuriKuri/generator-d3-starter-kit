@@ -26,6 +26,12 @@ var notifyLivereload = function(event, lr) {
   });
 }
 
+gulp.task('lint', function() {
+    return gulp.src(['js/*/*.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+});
+
 gulp.task('compress', function() {
   gulp.src('js/*/*.js')
     .pipe(uglify())
